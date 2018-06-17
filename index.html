@@ -46,26 +46,69 @@
           console.log(GetURLlist("c"));
           console.log(GetURLlist("d"));
           console.log(GetURLlist("e"));
+          console.log(GetURLlist("f"));
           data.push(GetURLlist("a"),GetURLlist("b"), GetURLlist("c"), GetURLlist("d"), GetURLlist("e"));
           console.log(data);
-          var myRadarChart = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ["智慧", "智慧", "智慧", "智慧", "智慧"],
-                datasets: [{
-                label: "真實資料",
-                backgroundColor: "rgba(200,0,0,0.2)",
-                data: data,
+          // f === 1 的時候是大專， 2 的時候是國高
+          if (GetURLlist("f") === '1') {
+            var myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    // 這裡調標籤文字
+                    labels: ["熱情", "創意", "智慧", "愛心", "耐力"],
+                    datasets: [{
+                    label: "真實資料",
+                    // 這裡調顏色
+                    backgroundColor: "rgba(33, 33, 89, 0.5)",
+                    data: data,
+                    }
+                    ,{
+                    label: "這個要留著",
+                    backgroundColor: "rgba(33, 33, 89, 0.5)",
+                    data: [0, 0, 0, 0, 0]
+                    }
+                ]
+                },
+                options: {
+                    scale: {
+                        pointLabels: {
+                        // 調整 label 文字大小
+                        fontSize: 20
+                        }
+                    }
                 }
-                ,{
-                label: "這個要留著",
-                backgroundColor: "rgba(0,0,200,0.2)",
-                data: [0, 0, 0, 0, 0]
+            });
+            myRadarChart.options.legend.display = false;
+          } else if (GetURLlist("f") === '2'){
+            var myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    // 這裡調標籤文字
+                    labels: ["力量", "敏捷", "信心", "智慧", "體力"],
+                    datasets: [{
+                    label: "真實資料",
+                    // 這裡調顏色
+                    backgroundColor: "rgba(33, 33, 89, 0.5)",
+                    data: data,
+                    }
+                    ,{
+                    label: "這個要留著",
+                    backgroundColor: "rgba(33, 33, 89, 0.5)",
+                    data: [0, 0, 0, 0, 0]
+                    }
+                ]
+                },
+                options: {
+                    scale: {
+                        pointLabels: {
+                        // 調整 label 文字大小
+                        fontSize: 20
+                        }
+                    }
                 }
-            ]
-            }
-        });
-        myRadarChart.options.legend.display = false;
+            });
+            myRadarChart.options.legend.display = false;
+          }
       }
 
   </script>
