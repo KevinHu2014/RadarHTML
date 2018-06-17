@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Rader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+</head>
+
+<body>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script type="text/javascript">
+      var data = [];
+      window.onload = function() {
+
+          function GetURLlist(name) {
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+              var r = window.location.search.substr(1).match(reg);
+              if(r != null) return unescape(r[2]);
+              return null;
+          }
+
+          function GetUrlParam(paraName) {　　　　
+              var url = document.location.toString();　　　　
+              var arrObj = url.split("?");
+              if(arrObj.length > 1) {　　　　　　
+                  var arrPara = arrObj[1].split("&");　　　　　　
+                  var arr;　
+                  for(var i = 0; i < arrPara.length; i++) {　　　　　　　　
+                      arr = arrPara[i].split("=");　　　　　
+                      if(arr != null && arr[0] == paraName) {　　　　　　　　　　
+                          return arr[1];　　　　　　　　
+                      }　　　　　　
+                  }　　　　　　
+                  return "";　　　　
+              }　　　　
+              else {　　　　　　
+                  return "";　　　　
+              }　　
+          }
+          // 调用方法
+          console.log(GetURLlist("a"));
+          console.log(GetURLlist("b"));
+          console.log(GetURLlist("c"));
+          console.log(GetURLlist("d"));
+          console.log(GetURLlist("e"));
+          data.push(GetURLlist("a"),GetURLlist("b"), GetURLlist("c"), GetURLlist("d"), GetURLlist("e"));
+      }
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var myRadarChart = new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: ["智慧", "智慧", "智慧", "智慧", "智慧"],
+            datasets: [{
+              label: "真實資料",
+              backgroundColor: "rgba(200,0,0,0.2)",
+              data: data,
+            }
+            ,{
+              label: "這個要留著",
+              backgroundColor: "rgba(0,0,200,0.2)",
+              data: [0, 0, 0, 0, 0]
+            }
+          ]
+          }
+      });
+      myRadarChart.options.legend.display = false;
+  </script>
+</body>
+</html>
